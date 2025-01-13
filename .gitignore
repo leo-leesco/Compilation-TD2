@@ -1,3 +1,4 @@
 *.mli
 *.out
 _build
+*.exe

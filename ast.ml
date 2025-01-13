@@ -1,27 +1,32 @@
-
 (* Abstract Syntax of Mini-Python *)
 
 (* Parsed trees.
    This is the output of the parser and the input of the interpreter. *)
 
 type location = Lexing.position * Lexing.position
-
-type ident = { loc: location; id: string; }
+type ident = { loc : location; id : string }
 
 type unop =
-  | Uneg (* -e *)
+  | Uneg
+  (* -e *)
   | Unot (* not e *)
 
 type binop =
-  | Badd | Bsub | Bmul | Bdiv | Bmod    (* + - * // % *)
-  | Beq | Bneq | Blt | Ble | Bgt | Bge  (* == != < <= > >= *)
-  | Band | Bor                          (* and or *)
+  | Badd
+  | Bsub
+  | Bmul
+  | Bdiv
+  | Bmod (* + - * // % *)
+  | Beq
+  | Bneq
+  | Blt
+  | Ble
+  | Bgt
+  | Bge (* == != < <= > >= *)
+  | Band
+  | Bor (* and or *)
 
-type constant =
-  | Cnone
-  | Cbool of bool
-  | Cstring of string
-  | Cint of int64
+type constant = Cnone | Cbool of bool | Cstring of string | Cint of int
 
 type expr =
   | Ecst of constant
@@ -43,5 +48,4 @@ and stmt =
   | Sset of expr * expr * expr (* e1[e2] = e3 *)
 
 and def = ident * ident list * stmt
-
 and file = def list * stmt
